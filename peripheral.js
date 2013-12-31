@@ -14,6 +14,7 @@ var name         = 'MyP';
 var characteristic = new Characteristic({
   uuid: 'fffffffffffffffffffffffffffffff1',
   properties: ['read', 'notify', 'writeWithoutResponse'], // read, write, writeWithoutResponse, notify
+  secure: ['read', 'notify', 'writeWithoutResponse'],
   value: null,
   descriptors: [
   ],

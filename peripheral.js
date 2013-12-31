@@ -17,23 +17,24 @@ var characteristic = new Characteristic({
   value: null,
   descriptors: [
   ],
-  onReadRequest: function(error){
-    console.log("read-request: " + error);
+  onReadRequest:  function(offset, callback){
+    console.log("on-read-request, offset: " + offset);
   },
-  onWriteRequest: function(callback){
+  onWriteRequest: function(data, offset, withoutResponse, callback){
     console.log("write request with arguments");
     console.log(arguments);
     var result = Characteristic.RESULT_SUCCESS;
     callback(result)
   },
-  onSubscribe: function(error){
-    console.log("subscribed: " + error);
+  onSubscribe: function(maxValueSize, updateValueCallback) { 
+    console.log("subscribed: " + maxValueSize);
+    updateValueCallback("hello Fred");
   },
-  onUnsubscribe: function(error){
-    console.log("unsubscribed: " + error);
+  onUnsubscribe: function(){
+    console.log("unsubscribed");
   },
-  onNotify: function(error){
-    console.log("notified: " + error);
+  onNotify: function(){
+    console.log("onNotify");
   }
 });
 
@@ -43,7 +44,6 @@ var primaryService = new PrimaryService({
     characteristic
   ]
 });
-
 
 bleno.on('stateChange', function(state){
   console.log("state changed: " + state);

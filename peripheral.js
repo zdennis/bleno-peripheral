@@ -48,6 +48,6 @@ bleno.setServices = [
   primaryService
 ];
 
-
-bleno.startAdvertising(name);
+console.log(primaryService.uuid);
+bleno.startAdvertising(name, [primaryService.uuid]);
 

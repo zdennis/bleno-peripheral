@@ -11,18 +11,6 @@ var name         = 'MyPeripheral';
 //var serviceUuids = ['fffffffffffffffffffffffffffffff0']
 
 
-bleno.on('stateChange', function(state){
-  console.log("state changed: " + state);
-});
-
-bleno.on('advertisingStart', function(error){
-  if(!error){
-    console.log("advertising started without error");
-  } else {
-    console.log("advertising started with error");
-  }
-});
-
 var characteristic = new Characteristic({
   uuid: 'fffffffffffffffffffffffffffffff1',
   properties: ['writeWithoutResponse'], // read, write, writeWithoutResponse, notify
@@ -48,10 +36,21 @@ var primaryService = new PrimaryService({
   ]
 });
 
-bleno.setServices([
-  primaryService
-]);
 
-console.log(primaryService.uuid);
+bleno.on('stateChange', function(state){
+  console.log("state changed: " + state);
+});
+
+bleno.on('advertisingStart', function(error){
+  if(!error){
+    console.log("advertising started without error");
+    bleno.setServices([
+      primaryService
+    ]);
+  } else {
+    console.log("advertising started with error");
+  }
+});
+
 bleno.startAdvertising(name, [primaryService.uuid]);
 

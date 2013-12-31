@@ -6,8 +6,8 @@ var bleno = require('bleno');
 var PrimaryService = bleno.PrimaryService,
     Characteristic = bleno.Characteristic;
 
-var name         = 'MyPeripheral',
-    serviceUuids =  ['DD613893991A4C4F9115709BF14A4FD7'];
+var name         = 'MyPeripheral';
+//    serviceUuids =  ['DD613893991A4C4F9115709BF14A4FD7'];
 //var serviceUuids = ['fffffffffffffffffffffffffffffff0']
 
 
@@ -49,5 +49,5 @@ bleno.setServices([
 ]);
 
 console.log(primaryService.uuid);
-bleno.startAdvertising(name, serviceUuids);
+bleno.startAdvertising(name, primaryService.uuid);
 

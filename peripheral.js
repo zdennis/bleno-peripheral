@@ -17,16 +17,24 @@ var characteristic = new Characteristic({
   value: null,
   descriptors: [
   ],
-  onReadRequest: null,
+  onReadRequest: function(error){
+    console.log("read-request: " + error);
+  },
   onWriteRequest: function(callback){
     console.log("write request with arguments");
     console.log(arguments);
     var result = Characteristic.RESULT_SUCCESS;
     callback(result)
   },
-  onSubscribe: null,
-  onUnsubscribe: null,
-  onNotify: null
+  onSubscribe: function(error){
+    console.log("subscribed: " + error);
+  },
+  onUnsubscribe: function(error){
+    console.log("unsubscribed: " + error);
+  },
+  onNotify: function(error){
+    console.log("notified: " + error);
+  }
 });
 
 var primaryService = new PrimaryService({

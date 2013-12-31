@@ -1,0 +1,16 @@
+{
+  "name": "bleno-peripheral",
+  "version": "0.0.0",
+  "description": "",
+  "main": "peripheral.js",
+  "dependencies": {
+    "bleno": "git+ssh://git@github.com:sandeepmistry/bleno.git#19c9106b46093438b540dcf3519007a8161a424b",
+    "n": "~1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}

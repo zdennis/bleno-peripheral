@@ -28,7 +28,7 @@ var characteristic = new Characteristic({
   },
   onSubscribe: function(maxValueSize, updateValueCallback) { 
     console.log("subscribed: " + maxValueSize);
-    updateValueCallback("hello Fred");
+    updateValueCallback(new Buffer("hello Fred"));
   },
   onUnsubscribe: function(){
     console.log("unsubscribed");

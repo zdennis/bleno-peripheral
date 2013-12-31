@@ -3,9 +3,13 @@
 var util = require('util');
 var bleno = require('bleno');
 
-/*
-var PrimaryService = bleno.PrimaryService;
-var Characteristic = bleno.Characteristic;
+var PrimaryService = bleno.PrimaryService,
+    Characteristic = bleno.Characteristic;
+
+var name         = 'MyPeripheral',
+    serviceUuids =  ['DD613893991A4C4F9115709BF14A4FD7'];
+//var serviceUuids = ['fffffffffffffffffffffffffffffff0']
+
 
 bleno.on('stateChange', function(state){
   console.log("state changed: " + state);
@@ -44,22 +48,6 @@ bleno.setServices = [
   primaryService
 ];
 
-bleno.startAdvertising('GeLo')
-*/
 
-/*
-var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0';
-var major = 0; // 0x0000 - 0xffff
-var minor = 0; // 0x0000 - 0xffff
-var measuredPower = -59; // -128 - 127
-
-bleno.startAdvertisingIBeacon(uuid, major, minor, measuredPower);
-*/
-
-
-var name = 'MyPeripheral';
-var serviceUuids =   ['DD613893991A4C4F9115709BF14A4FD7'];
-//var serviceUuids = ['fffffffffffffffffffffffffffffff0']
-
-bleno.startAdvertising(name, serviceUuids);
+bleno.startAdvertising(name);
 

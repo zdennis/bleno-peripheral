@@ -44,10 +44,10 @@ var primaryService = new PrimaryService({
   ]
 });
 
-bleno.setServices = [
+bleno.setServices([
   primaryService
-];
+]);
 
 console.log(primaryService.uuid);
-bleno.startAdvertising(name, [primaryService.uuid]);
+bleno.startAdvertising(name);
 

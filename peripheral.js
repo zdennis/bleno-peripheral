@@ -15,8 +15,12 @@ bleno.on('stateChange', function(state){
   console.log("state changed: " + state);
 });
 
-bleno.on('advertisingStart', function(state){
-  console.log("advertising started");
+bleno.on('advertisingStart', function(error){
+  if(!error){
+    console.log("advertising started without error");
+  } else {
+    console.log("advertising started with error");
+  }
 });
 
 var characteristic = new Characteristic({
@@ -49,5 +53,5 @@ bleno.setServices([
 ]);
 
 console.log(primaryService.uuid);
-bleno.startAdvertising(name, primaryService.uuid);
+bleno.startAdvertising(name, [primaryService.uuid]);
 

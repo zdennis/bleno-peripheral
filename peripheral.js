@@ -6,7 +6,7 @@ var bleno = require('bleno');
 var PrimaryService = bleno.PrimaryService,
     Characteristic = bleno.Characteristic;
 
-var name         = 'MyPeripheral';
+var name         = 'MyP';
 //    serviceUuids =  ['DD613893991A4C4F9115709BF14A4FD7'];
 //var serviceUuids = ['fffffffffffffffffffffffffffffff0']
 

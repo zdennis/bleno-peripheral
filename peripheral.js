@@ -49,5 +49,5 @@ bleno.setServices([
 ]);
 
 console.log(primaryService.uuid);
-bleno.startAdvertising(name);
+bleno.startAdvertising(name, serviceUuids);
 

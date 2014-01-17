@@ -4,7 +4,7 @@
   "description": "",
   "main": "peripheral.js",
   "dependencies": {
-    "bleno": "git+ssh://git@github.com:sandeepmistry/bleno.git#19c9106b46093438b540dcf3519007a8161a424b",
+    "bleno": "~0.1.1",
     "n": "~1.1.0"
   },
   "devDependencies": {},

@@ -1,67 +1,34 @@
 #!/usr/bin/env node
 
-var util = require('util');
-var bleno = require('bleno');
+var debug = require('debug')('door'),
+    util = require('util'),
+    bleno = require('bleno');
 
-var PrimaryService = bleno.PrimaryService,
-    Characteristic = bleno.Characteristic;
-
-var name         = 'MyP';
-//    serviceUuids =  ['DD613893991A4C4F9115709BF14A4FD7'];
-//var serviceUuids = ['fffffffffffffffffffffffffffffff0']
-
-
-var characteristic = new Characteristic({
-  uuid: 'fffffffffffffffffffffffffffffff1',
-  properties: ['read', 'notify', 'writeWithoutResponse'], // read, write, writeWithoutResponse, notify
-  secure: ['read', 'notify', 'writeWithoutResponse'],
-  value: null,
-  descriptors: [
-  ],
-  onReadRequest:  function(offset, callback){
-    console.log("on-read-request, offset: " + offset);
-  },
-  onWriteRequest: function(data, offset, withoutResponse, callback){
-    console.log("write request with arguments");
-    console.log(arguments);
-    var result = Characteristic.RESULT_SUCCESS;
-    callback(result)
-  },
-  onSubscribe: function(maxValueSize, updateValueCallback) { 
-    console.log("subscribed: " + maxValueSize);
-    setInterval(function(){
-      updateValueCallback(new Buffer("hello Fred " + Math.random()));
-    }, 5000)
-  },
-  onUnsubscribe: function(){
-    console.log("unsubscribed");
-  },
-  onNotify: function(){
-    console.log("onNotify");
-  }
-});
-
-var primaryService = new PrimaryService({
-  uuid: 'DD613893991A4C4F9115709BF14A4FD7',
-  characteristics: [
-    characteristic
-  ]
-});
+var DoorService = require('./src/door-service'),
+    doorService = new DoorService();
 
 bleno.on('stateChange', function(state){
-  console.log("state changed: " + state);
+  debug('bleno.stateChange: ' + state);
 });
 
 bleno.on('advertisingStart', function(error){
   if(!error){
-    console.log("advertising started without error");
+    debug('bleno.advertisingStart success');
     bleno.setServices([
-      primaryService
+      doorService
     ]);
   } else {
-    console.log("advertising started with error");
+    debug('bleno.advertisingStart error: ', error);
+
+    debug(
+      '\n==========================================================\n' + 
+      'This error may be caused by having a Bluetooth device currently\n' + 
+      'connected. Please disconnect the device and try to start again.\n' + 
+      '==========================================================\n'
+    );
   }
 });
 
-bleno.startAdvertising(name, [primaryService.uuid]);
+debug('Starting Door peripheral on platform: ', process.platform);
+bleno.startAdvertising(doorService.name, [doorService.uuid]);
 

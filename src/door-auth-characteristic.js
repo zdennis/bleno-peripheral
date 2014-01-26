@@ -55,22 +55,5 @@ DoorAuthCharacteristic.prototype.onWriteRequest = function(data, offset, without
 };
 
 
-DoorAuthCharacteristic.prototype.onSubscribe = function(maxValueSize, updateValueCallback) { 
-  debug('DoorAuthCharacteristic#onSubscribe with arguments: ', arguments);
-  setInterval(function(){
-    updateValueCallback(new Buffer("hello Fred " + Math.random()));
-  }, 5000)
-};
-
-
-DoorAuthCharacteristic.prototype.onUnsubscribe = function(){
-  debug('DoorAuthCharacteristic#onUnsubscribe with arguments: ', arguments);
-};
-
-
-DoorAuthCharacteristic.prototype.onNotify = function(){
-  debug('DoorAuthCharacteristic#onNotify with arguments: ', arguments);
-};
-
 
 module.exports = DoorAuthCharacteristic;

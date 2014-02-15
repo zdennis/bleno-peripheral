@@ -29,6 +29,6 @@ bleno.on('advertisingStart', function(error){
   }
 });
 
-debug('Starting Door peripheral on platform: ', process.platform);
+debug('Starting Door peripheral (' + doorService.uuid + ') on platform: ', process.platform);
 bleno.startAdvertising(doorService.name, [doorService.uuid]);
 

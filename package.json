@@ -7,7 +7,9 @@
     "bleno": "~0.1.1",
     "n": "~1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "debug": "~0.7.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
